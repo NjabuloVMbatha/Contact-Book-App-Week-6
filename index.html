@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Contact Book</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        
+        <div class="container">
+            <h1>My Contacts</h1>
+            <div id="contacts">Contacts loading...</div>
+            <div id="button-group">
+                <button id="addContact">Add Contact</button>
+                <button id="refresh">Refresh</button>
+            </div>
+        </div>
+
+        <script src="config.js"></script>
+        <script>
+            
+            function getContacts() {
+                fetch(rootPath + 'controller/get-contacts/', {
+                    method: 'GET',
+                    headers: { 'apiKey': apiKey }
+                })
+                .then(response => response.json())
+                .then(data => {
+                    displayContacts(data);
+                })
+                .catch(error => console.error('Error fetching contacts:', error));
+            }
+
+            function displayContacts(data) {
+                let output = "";
+                data.forEach(contact => {
+                    output += `
+                        <a href="edit-contact.html?id=${contact.id}" class="contact-item">
+                            <img src="${rootPath}controller/uploads/${contact.avatar}" alt="Avatar">
+                            <span>${contact.firstname} ${contact.lastname}</span>
+                        </a>
+                    `;
+                });
+                document.getElementById('contacts').innerHTML = output;
+            }
+
+            document.getElementById('addContact').addEventListener('click', function() {
+                window.location.href = 'add-contact.html';
+            });
+            document.getElementById('refresh').addEventListener('click', getContacts);
+
+            getContacts();
+        </script>
+    </body>
+</html>

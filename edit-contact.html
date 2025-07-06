@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Contact</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body onload="getContact()">
+    <div class="container">
+        <h1>Contact Details</h1>
+        <div id="avatarImage"></div>
+        <form id="editForm">
+            <label for="firstname">First name</label>
+            <input type="text" name="firstname" id="firstname" readonly>
+            <label for="lastname">Last name</label>
+            <input type="text" name="lastname" id="lastname" readonly>
+            <label for="mobile">Mobile</label>
+            <input type="text" name="mobile" id="mobile" readonly>
+            <label for="email">Email</label>
+            <input type="email" name="email" id="email" readonly>
+            <label for="avatar" id="avatarLabel" hidden>Change profile image</label>
+            <input type="file" name="avatar" id="avatar" hidden>
+            
+            <button type="submit" id="submitForm" hidden>Save Changes</button>
+        </form>
+        
+        <div id="button-group">
+            <button id="homeLink" type="button">Home</button>
+            <button id="editContact" type="button">Edit</button>
+        
+            <button id="deleteContact" type="button" class="btn-danger">Delete</button>
+        </div>
+    </div>
+    
+    <script src="config.js"></script>
+    <script>
+        
+        var id = getId();
+        document.getElementById("homeLink").addEventListener('click', homeLink);
+        document.getElementById("editContact").addEventListener('click', editContact);
+        document.getElementById("submitForm").addEventListener('click', submitForm);
+
+        function getId() {  }
+        function getContact() {  }
+        function homeLink() {  }
+        function displayOutput(data) { }
+        function editContact() {  }
+        function submitForm(e) {  }
+    </script>
+</body>
+</html>
